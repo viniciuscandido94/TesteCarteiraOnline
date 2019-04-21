@@ -1,0 +1,25 @@
+html
+    head
+        title= title
+    body
+        h1 Carteira online
+        form( action="/" method="POST" )
+            h4 Insira sua Carteira
+            input(type="text" name="idcarteira")
+
+            h4 Entrada de dinheiro
+            input(type="number" name="entrada")
+            select(name="categoriaentrada")
+                option(value='deposito') Deposito
+
+            h4 Saida de dinheiro
+            input(type="number" name="saida")
+            select(name="categoriasaida")
+                option(value='saque') Saque
+                option(value='transferencia') Transferencia
+                option(value='pagamento') Pagamento
+
+            h4 Observacao
+            textarea(name="observacao")
+            h4
+            input(type="submit" value="Enviar")
