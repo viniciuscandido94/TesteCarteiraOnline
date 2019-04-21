@@ -36,7 +36,8 @@ exports.postMovi = async(req, res, next) => {
                 categMovi: req.body.categoriaentrada,
                 tipoMovi: 'entrada',
                 carteira: req.body.idcarteira,
-                observacao: req.body.observacao
+                observacao: req.body.observacao,
+                historico: "Foi efetuada uma transacao de entrada no valor " + req.body.entrada
             });
         }
         if(req.body.saida){
@@ -44,11 +45,13 @@ exports.postMovi = async(req, res, next) => {
                 categMovi: req.body.categoriasaida,
                 tipoMovi: 'saida',
                 carteira: req.body.idcarteira,
-                observacao: req.body.observacao
+                observacao: req.body.observacao,
+                historico: "Foi efetuada uma transacao de saida no valor " + req.body.saida
           });
         }
         res.status(201).send({ message:'Processo concluido!' });
     } catch(e){
+        console.log(e);
         res.status(500).send({ message:'Processo de gravacao de movimentacao falhou!' });
     }
 };
