@@ -25,6 +25,11 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    dataMovi: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
     observacao: {
         type: String,
         required: false
