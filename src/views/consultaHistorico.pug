@@ -1,0 +1,15 @@
+html
+    head
+        title= title
+    body
+        h1 Consultas
+        form( action="/historico" method="POST" )
+            h4 Insira sua Carteira para consultar o historico da mesma:
+            input(type="text" name="idcarteira")
+            h4
+            input(type="submit" value="Consultar")
+
+            br
+            br
+            a(href="/")
+               | Ir para Home
