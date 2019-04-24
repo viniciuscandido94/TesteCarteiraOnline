@@ -7,9 +7,8 @@ const Graficos = require('../services/grafico.js');
 exports.getByCategoriaTipoMov = async(req, res, next) => {
     try {
         var dados = await repository.getByCategoriaTipoMov(req.params.tipoMovi);
-        Graficos.montaGrafico(dados);
+        Graficos.montaGraficoCategorias(dados);
     } catch(e){
-        console.log(e)
         res.status(500).send( { message:'Processo falhou!' } );
     }
 };
@@ -17,9 +16,8 @@ exports.getByCategoriaTipoMov = async(req, res, next) => {
 exports.getByUltimosMov = async(req, res, next) => {
     try {
         var dados = await repository.getByUltimosMov();
-        Graficos.montaGrafico(dados);
+        Graficos.montaGraficosUltimosMovi(dados);
     } catch(e){
-        console.log(e)
         res.status(500).send( { message:'Processo falhou!' } );
     }
 };
@@ -44,9 +42,12 @@ exports.postMovi = async(req, res, next) => {
                 historico: "Foi efetuada uma transacao de saida no valor " + req.body.saida + " na carteira " + req.body.idcarteira
           });
         }
-        res.status(201).send({ message:'Processo concluido!' });
+        if(!req.body.saida && !req.body.entrada){
+            res.render( 'validaValoresNaoDigitado' )
+        }
+        res.redirect('/');
     } catch(e){
-        console.log(e);
+        res.render()
         res.status(500).send({ message:'Processo de gravacao de movimentacao falhou!' });
     }
 };

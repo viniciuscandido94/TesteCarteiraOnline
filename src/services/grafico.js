@@ -1,8 +1,8 @@
 'use strict'
 
-const plotly = require('plotly')("viniciuscandidocezar", "rlVZgUbFU3xgBLhPFuzQ")
+//const plotly = require('plotly')("viniciuscandidocezar", "rlVZgUbFU3xgBLhPFuzQ")
 
-exports.montaGrafico = function(dados){
+exports.montaGraficoCategorias = function(dados){
     var dadosAux = [];
     var dadosQtd = [];
     var contador = 0;
@@ -25,20 +25,53 @@ exports.montaGrafico = function(dados){
     exibeGrafico(dadosAux,dadosQtd);
 };
 
+exports.montaGraficosUltimosMovi = function(dados){
+    var content = 0;
+    var contsai = 0;
+    var dadosAux = [];
+    var dadosQtd = [];
+    var dadosHistorico = [];
+
+    for( var y in dados ){
+        if( dados[y]["tipoMovi"] === "entrada" ){
+            content++
+        } else if( dados[y]["tipoMovi"] === "saida" ){
+            contsai++
+        }
+        dadosHistorico.push(dados[y]["historico"]);
+    };
+
+    dadosAux.push("entrada");
+    dadosQtd.push(content);
+    dadosAux.push("saida");
+    dadosQtd.push(contsai);
+
+    exibeGrafico(dadosAux,dadosQtd);
+};
+
 function exibeGrafico(arrayx, array){
 
-    var arrayPrincipal = [];
+    // var arrayPrincipal = [];
+    //
+    // arrayPrincipal = [
+    //     {
+    //       x: arrayx,
+    //       y: array,
+    //       type: "bar"
+    //     }
+    // ];
+    //
+    // var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
+    // plotly.plot(arrayPrincipal, graphOptions, function(err, msg){
+    //   // console.log(msg);
+    // });
 
-    arrayPrincipal = [
-        {
-          x: arrayx,
-          y: array,
-          type: "bar"
-        }
-    ];
+    var data = [arrayx, array];
 
-    var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
-    plotly.plot(arrayPrincipal, graphOptions, function(err, msg){
-      // console.log(msg);
-    });
+    var layout = {
+        title: 'Connect the Gaps Between Data',
+        showlegend: false
+    };
+
+    Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
 }

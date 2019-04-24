@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+//const path = require('path');
 
 const app = express();
 const router = express.Router();
@@ -33,11 +34,25 @@ app.use(function (req, res, next) {
     next();
 });
 
+//app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('view engine', 'pug');
 app.set('views', './src/views');
 
 app.get('/', (req, res) => {
   res.render('carteira', { title: 'Carteira online!' })
+});
+
+app.get('/consultaCarteira', (req, res) => {
+  res.render('consultaCarteira', { title: 'Consulta Carteira' })
+});
+
+app.get('/consultaHistorico', (req, res) => {
+  res.render('consultaHistorico', { title: 'Consulta Carteira' })
+});
+
+app.get('/graficos', (req, res) => {
+  res.render('grafico', { title: 'Grafico' })
 });
 
 app.use('/', carteiraRoute);

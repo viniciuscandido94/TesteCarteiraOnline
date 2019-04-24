@@ -5,8 +5,9 @@ const guid = require('guid');
 
 exports.getByidCarteiraUserValor = async(req, res, next) => {
     try {
-        var dados = await repository.getByidCarteiraUserValor( req.params.idCarteiraUser );
-        res.render( 'valorCarteira', { valor: dados.valor, carteira: req.params.idCarteiraUser } )
+        var idCarteira = req.body.idcarteira || req.params.idcarteira
+        var dados = await repository.getByidCarteiraUserValor( idCarteira );
+        res.render( 'valorCarteira', { valor: dados.valor, carteira: idCarteira } )
     } catch(e) {
         res.status(500).send( { message:'Recuperar valor da carteira falhou!' } );
     }
@@ -14,9 +15,11 @@ exports.getByidCarteiraUserValor = async(req, res, next) => {
 
 exports.getByidCarteiraUserHistorico = async(req, res, next) => {
     try {
-        var dados = await repository.getByidCarteiraUserHistorico( req.params.idCarteiraUser );
-        res.render( 'historicoCarteira', { historico: dados.historico, carteira: req.params.idCarteiraUser } );
+        var idCarteira = req.body.idcarteira || req.params.idcarteira
+        var dados = await repository.getByidCarteiraUserHistorico( idCarteira );
+        res.render( 'historicoCarteira', { historico: dados.historico, carteira: idCarteira } );
     } catch(e) {
+        console.log(e)
         res.status(500).send( { message:'Recuperar historico da carteira falhou!' } );
     }
 };

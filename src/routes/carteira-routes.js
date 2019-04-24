@@ -5,7 +5,9 @@ const router = express.Router();
 const controller = require('../controllers/carteira-controller');
 
 router.post( '/', controller.post);
-router.get( '/valorCarteira/:idCarteiraUser', controller.getByidCarteiraUserValor);
-router.get( '/historico/:idCarteiraUser', controller.getByidCarteiraUserHistorico);
+router.post( '/valorCarteira', controller.getByidCarteiraUserValor);
+router.get( '/valorCarteira/:idcarteira', controller.getByidCarteiraUserValor);
+router.post( '/historico', controller.getByidCarteiraUserHistorico);
+router.get( '/historico/:idcarteira', controller.getByidCarteiraUserHistorico);
 
 module.exports = router;

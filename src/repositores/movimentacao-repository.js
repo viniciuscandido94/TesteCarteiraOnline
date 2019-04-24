@@ -14,6 +14,6 @@ exports.getByCategoriaTipoMov = async(tipoMovi) => {
 };
 
 exports.getByUltimosMov = async() => {
-     var result = await Movi.find({},{ dataMovi: 0, _id: 0 } ).limit( 10 );
+     var result = await Movi.find({},{ historico: 1, tipoMovi: 1, _id: 0 } ).sort( { dataMovi: -1 } ).limit( 10 );
      return result;
 };
