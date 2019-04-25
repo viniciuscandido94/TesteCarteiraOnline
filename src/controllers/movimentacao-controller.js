@@ -46,7 +46,7 @@ exports.postMovi = async(req, res, next) => {
           });
         }
         if(!req.body.saida && !req.body.entrada){
-            res.render( 'validaValoresNaoDigitado' )
+            res.render( 'validaValoresNaoDigitado', { messagem: 'Nao foi efetuado a gravação dos dados! Devido à nenhum valor de entrada e de saida terem sido informados. Por favor refaça!' } )
         }
         res.redirect('/');
     } catch(e){
