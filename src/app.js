@@ -51,8 +51,8 @@ app.get('/consultaHistorico', (req, res) => {
   res.render('consultaHistorico', { title: 'Consulta Carteira' })
 });
 
-app.get('/graficos', (req, res) => {
-  res.render('grafico', { title: 'Grafico' })
+app.get('/consultaMovimentacao', (req, res) => {
+  res.render('consultaMovimentacao', { title: 'Consulta de Movimentacoes' })
 });
 
 app.use('/', carteiraRoute);

@@ -7,7 +7,8 @@ const Graficos = require('../services/grafico.js');
 exports.getByCategoriaTipoMov = async(req, res, next) => {
     try {
         var dados = await repository.getByCategoriaTipoMov(req.params.tipoMovi);
-        Graficos.montaGraficoCategorias(dados);
+        var objDados = Graficos.montaGraficoCategorias(dados);
+        return res.status(200).send( objDados );
     } catch(e){
         res.status(500).send( { message:'Processo falhou!' } );
     }
@@ -16,7 +17,9 @@ exports.getByCategoriaTipoMov = async(req, res, next) => {
 exports.getByUltimosMov = async(req, res, next) => {
     try {
         var dados = await repository.getByUltimosMov();
-        Graficos.montaGraficosUltimosMovi(dados);
+        var historicos = Graficos.montaGraficosUltimosMovi(dados);
+        res.render( 'consultaUltimasMovi', { historico: historicos } );
+        //return res.status(200).send( objDados );
     } catch(e){
         res.status(500).send( { message:'Processo falhou!' } );
     }

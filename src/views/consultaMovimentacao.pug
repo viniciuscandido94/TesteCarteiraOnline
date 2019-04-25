@@ -1,0 +1,32 @@
+html
+    head
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+        title= title
+        script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    body
+        script.
+           function recuperaMovimentacao(){
+               var e = document.getElementById("tipoMovi");
+               var tipoMovi = e.options[e.selectedIndex].value;
+               const Http = new XMLHttpRequest();
+               const url='/grafico/'+ tipoMovi;
+               Http.open("GET", url);
+               Http.send();
+           };
+        h2 Consultas Movimentacoes das Categorias
+
+        br
+        h6 Selecione tipo de movimentacao
+        select#tipoMovi
+            option(value='entrada') Entrada
+            option(value='saida') Saida
+
+        br
+        br
+        button(onclick="recuperaMovimentacao()") Visualizar
+
+        br
+        br
+        a(href="/")
+           | Ir para Home

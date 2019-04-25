@@ -22,7 +22,7 @@ exports.montaGraficoCategorias = function(dados){
     dadosAux.push(categoriant);
     dadosQtd.push(contador);
 
-    exibeGrafico(dadosAux,dadosQtd);
+    return { dadosAux, dadosQtd }
 };
 
 exports.montaGraficosUltimosMovi = function(dados){
@@ -46,7 +46,8 @@ exports.montaGraficosUltimosMovi = function(dados){
     dadosAux.push("saida");
     dadosQtd.push(contsai);
 
-    exibeGrafico(dadosAux,dadosQtd);
+    return dadosHistorico
+    //return { dadosAux,dadosQtd }
 };
 
 function exibeGrafico(arrayx, array){
@@ -66,12 +67,12 @@ function exibeGrafico(arrayx, array){
     //   // console.log(msg);
     // });
 
-    var data = [arrayx, array];
-
-    var layout = {
-        title: 'Connect the Gaps Between Data',
-        showlegend: false
-    };
-
-    Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
+    // var data = [arrayx, array];
+    //
+    // var layout = {
+    //     title: 'Connect the Gaps Between Data',
+    //     showlegend: false
+    // };
+    //
+    // Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
 }
