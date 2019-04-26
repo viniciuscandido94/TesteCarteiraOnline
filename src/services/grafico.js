@@ -1,7 +1,5 @@
 'use strict'
 
-//const plotly = require('plotly')("viniciuscandidocezar", "rlVZgUbFU3xgBLhPFuzQ")
-
 exports.montaGraficoCategorias = function(dados){
     var dadosAux = [];
     var dadosQtd = [];
@@ -49,30 +47,3 @@ exports.montaGraficosUltimosMovi = function(dados){
     return dadosHistorico
     //return { dadosAux,dadosQtd }
 };
-
-function exibeGrafico(arrayx, array){
-
-    // var arrayPrincipal = [];
-    //
-    // arrayPrincipal = [
-    //     {
-    //       x: arrayx,
-    //       y: array,
-    //       type: "bar"
-    //     }
-    // ];
-    //
-    // var graphOptions = {filename: "basic-bar", fileopt: "overwrite"};
-    // plotly.plot(arrayPrincipal, graphOptions, function(err, msg){
-    //   // console.log(msg);
-    // });
-
-    // var data = [arrayx, array];
-    //
-    // var layout = {
-    //     title: 'Connect the Gaps Between Data',
-    //     showlegend: false
-    // };
-    //
-    // Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
-}

@@ -2,18 +2,38 @@ html
     head
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
         title= title
-        script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
-        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js")
+        script(src="https://unpkg.com/axios/dist/axios.min.js")
     body
         script.
            function recuperaMovimentacao(){
-               var e = document.getElementById("tipoMovi");
-               var tipoMovi = e.options[e.selectedIndex].value;
-               const Http = new XMLHttpRequest();
+               let e = document.getElementById("tipoMovi");
+               let tipoMovi = e.options[e.selectedIndex].value;
                const url='/grafico/'+ tipoMovi;
-               Http.open("GET", url);
-               Http.send();
-           };
+               axios.get(url)
+                  .then(function (response) {
+                      let ctx = document.getElementById("pie-chart");
+                      let myChart = new Chart(ctx, {
+                          type: 'pie',
+                            data: {
+                               labels: response.data.dadosAux,
+                               datasets: [
+                                  {
+                                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                    data: response.data.dadosQtd
+                                  }
+                               ]
+                            },
+                            options: {
+                               legend: { display: true },
+                               title: {
+                                  display: true,
+                                  text: ''
+                               }
+                           }
+                      });
+                  })
+          };
         h2 Consultas Movimentacoes das Categorias
 
         br
@@ -30,3 +50,5 @@ html
         br
         a(href="/")
            | Ir para Home
+
+        canvas#pie-chart(width="100" height="100")
